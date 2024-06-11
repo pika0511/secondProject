@@ -56,11 +56,14 @@ public class ArticleApiControllerM {
     }
 
     @DeleteMapping("delete/{id}")
-    public ResponseEntity<Article> delete(@PathVariable Long id){
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        Article article = articleServiceM.show2(id);
         Long deleted = articleServiceM.delete(id);
         log.info("deletedAAA : " + deleted);
         return (deleted == 1) ?
-                ResponseEntity.status(HttpStatus.NO_CONTENT).build() :
-                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+                ResponseEntity.ok(article) :
+                ResponseEntity.badRequest().build();
+//                ResponseEntity.status(HttpStatus.NO_CONTENT).build() :
+//        ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 }

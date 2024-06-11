@@ -27,6 +27,10 @@ public class ArticleServiceM {
         return articleMapper.findById(id);
     }
 
+    public Article show2(Long id) {
+        return articleMapper.findById2(id);
+    }
+
     public int create(ArticleForm dto) {
         Article article = dto.toEntity();
         return articleMapper.save(article);
