@@ -21,6 +21,7 @@ public class ArticleApiControllerM {
     @Autowired
     private ArticleServiceM articleServiceM;
 
+    // 1. 게시글 전체 보기
     @RequestMapping(value = "findAll", method = RequestMethod.POST)
     public ResponseEntity<?> index(){
         ArticleDTO articleDTO = new ArticleDTO();
@@ -29,6 +30,7 @@ public class ArticleApiControllerM {
         return new ResponseEntity<>(articleDTO, HttpStatus.OK);
     }
 
+    // 2. 게시글 1개 보기
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public ResponseEntity<?> show(@PathVariable Long id){
         ArticleDTO articleDTO = new ArticleDTO();
@@ -37,6 +39,7 @@ public class ArticleApiControllerM {
         return new ResponseEntity<>(articleDTO, HttpStatus.OK);
     }
 
+    // 3. 게시글 생성하기
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ResponseEntity<?> create(@RequestBody ArticleForm dto){
         int created = articleServiceM.create(dto);
@@ -46,6 +49,7 @@ public class ArticleApiControllerM {
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
+    // 4. 게시글 업데이트 하기
     @RequestMapping(value = "update", method = RequestMethod.POST)
 //    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody ArticleForm dto){
     public ResponseEntity<?> update(@RequestBody ArticleForm dto){
@@ -55,6 +59,7 @@ public class ArticleApiControllerM {
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
+    // 5. 게시글 삭제하기
     @DeleteMapping("delete/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
         Article article = articleServiceM.show2(id);
@@ -63,7 +68,25 @@ public class ArticleApiControllerM {
         return (deleted == 1) ?
                 ResponseEntity.ok(article) :
                 ResponseEntity.badRequest().build();
-//                ResponseEntity.status(HttpStatus.NO_CONTENT).build() :
+//        ResponseEntity.status(HttpStatus.NO_CONTENT).build() :
 //        ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
+
+    // 6. 게시글 삭제하기(2)
+    @DeleteMapping("delete2/{id}")
+    public ResponseEntity<?> delete2(@PathVariable Long id){
+        Long deleted = articleServiceM.delete2(id);
+        log.info("deletedAAA : " + deleted);
+        return (deleted == 1) ?
+                ResponseEntity.ok().build() :
+//                ResponseEntity.ok(articleDTO) :
+                ResponseEntity.badRequest().build();
+//        ResponseEntity.status(HttpStatus.NO_CONTENT).build() :
+//        ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+//    ArticleDTO articleDTO = new ArticleDTO();
+//    articleDTO.setResultCode("S0001");
+//    articleDTO.setRes(articleServiceM.index());
+//    return new ResponseEntity<>(articleDTO, HttpStatus.OK);
 }

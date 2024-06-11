@@ -1,6 +1,7 @@
 package com.example.secondProject.service.myBatis;
 
 import com.example.secondProject.dto.ArticleForm;
+import com.example.secondProject.dto.myBatis.ArticleDTO;
 import com.example.secondProject.entity.Article;
 import com.example.secondProject.mapper.ArticleMapper;
 import com.example.secondProject.repository.ArticleRepository;
@@ -57,5 +58,18 @@ public class ArticleServiceM {
             return null;
         }
         return articleMapper.delete(target.getId());
+    }
+
+    public Long delete2(Long id) {
+        // article이 있는지 조회
+        Article article = show2(id);
+        // 리턴 데이터 셋팅
+        ArticleDTO articleDTO = new ArticleDTO();
+        articleDTO.setResultCode("S0003");
+        articleDTO.setRes(article);
+        // 댓글이 있다면, 댓글도 삭제
+//        ArrayList<Comment> commentList = "";
+        return null;
+        
     }
 }

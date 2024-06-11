@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.secondProject.mapper.CommentMapper">
+
+    <select id="findByArticleId">
+        SELECT * FROM comment WHERE article_id = #{articleId};
+    </select>
+
+    <insert id="save"><![CDATA[
+        INSERT INTO comment(article_id, nickname, body) VALUES(#{id}, #{nickname}, #{body});
+    ]]></insert>
+
+    <update id="update"><![CDATA[
+        UPDATE comment SET nickname=#{nickname}, body=#{body} WHERE id = #{id}
+    ]]></update>
+
+    <delete id="delete"><![CDATA[
+        DELETE FROM comment WHERE id = #{id};
+    ]]></delete>
+
+    <!--<select id="findAll" resultType="HashMap">
+        select * from article
+    </select>
+
+    <select id="findById" resultType="HashMap"><![CDATA[
+        select * from article where id = #{id}
+    ]]></select>
+
+    <select id="findById2"><![CDATA[
+        select * from article where id = #{id}
+    ]]></select>
+
+    <insert id="save"><![CDATA[
+        INSERT INTO article(id, title, content) VALUES(#{id}, #{title}, #{content});
+    ]]></insert>
+
+    <update id="update"><![CDATA[
+         update article set title=#{title}, content=#{content} WHERE id = #{id}
+    ]]></update>
+
+    <delete id="delete"><![CDATA[
+         DELETE FROM article WHERE id = #{id};
+    ]]></delete>-->
+
+</mapper>
