@@ -1,4 +1,4 @@
-package com.example.secondProject.controller;
+package com.example.secondProject.controller.myBatis;
 
 import com.example.secondProject.dto.myBatis.Service;
 import com.example.secondProject.service.myBatis.ScrapingService;
@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 @Slf4j
 @Controller
 public class ScrapingController {
@@ -18,8 +20,16 @@ public class ScrapingController {
 
     // Scraping 페이지 호출
     @GetMapping("/scraping")
-    public String scraping(){
-        return "scrapingPage/scraping";
+    public String scraping(Model model){
+        List<Service> selectMainMenu = scrapingService.getSelectMainMenu();
+        model.addAttribute("selectMainMenu", selectMainMenu);
+        List<Service> selectSubMenu = scrapingService.getSelectSubMenu();
+        model.addAttribute("selectSubMenu", selectSubMenu);
+        log.info("=================================");
+        log.info(selectMainMenu.toString());
+        log.info(selectSubMenu.toString());
+        log.info("=================================");
+        return "scrapingPage/scraping2";
     }
 
     // 입력값 호출
@@ -31,9 +41,9 @@ public class ScrapingController {
         model.addAttribute("service", service);
 //        model.addAttribute("commentDtos", commentsDtos);
 
-        log.info("=================================");
-        log.info(service.toString());
-        log.info("=================================");
+//        log.info("=================================");
+//        log.info(service.toString());
+//        log.info("=================================");
         return service.getInJson();
     }
 }

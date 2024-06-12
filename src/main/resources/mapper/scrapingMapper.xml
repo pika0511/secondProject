@@ -6,4 +6,12 @@
         select * from cmminput where svcId = #{svcId}
     ]]></select>
 
+    <select id="getSelectMainMenu"><![CDATA[
+        SELECT orgCd, orgNm FROM cmminput GROUP BY orgNm;
+    ]]></select>
+
+    <select id="getSelectSubMenu"><![CDATA[
+        SELECT orgCd, orgNm, bigo, svcId FROM cmminput
+    ]]></select>
+
 </mapper>
