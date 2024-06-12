@@ -25,6 +25,11 @@ public class ArticleController {
     @Autowired
     private CommentService commentService;
 
+    @GetMapping("/nxweb")
+    public String nxWeb(){
+        return "html/NxWeb_Guide2.html";
+    }
+
     @GetMapping("/articles/new")
     public String newArticleForm(){
         return "articles/new";
