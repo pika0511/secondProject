@@ -2,8 +2,10 @@ package com.example.secondProject.service.myBatis;
 
 import com.example.secondProject.dto.ArticleForm;
 import com.example.secondProject.dto.myBatis.ArticleDTO;
+import com.example.secondProject.dto.myBatis.CommentDtoM;
 import com.example.secondProject.entity.Article;
 import com.example.secondProject.mapper.ArticleMapper;
+import com.example.secondProject.mapper.CommentMapper;
 import com.example.secondProject.repository.ArticleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -19,9 +22,11 @@ public class ArticleServiceM {
     private ArticleRepository articleRepository;
     @Autowired
     private ArticleMapper articleMapper;
+    @Autowired
+    private CommentMapper commentMapper;
 
     public ArrayList<HashMap<String, Object>> index() {
-        return null;
+        return articleMapper.findAll();
     }
 
     public ArrayList<HashMap<String, Object>> show(Long id) {
@@ -60,7 +65,7 @@ public class ArticleServiceM {
         return articleMapper.delete(target.getId());
     }
 
-    public Long delete2(Long id) {
+    public ArticleDTO delete2(Long id) {
         // article이 있는지 조회
         Article article = show2(id);
         // 리턴 데이터 셋팅
@@ -68,8 +73,15 @@ public class ArticleServiceM {
         articleDTO.setResultCode("S0003");
         articleDTO.setRes(article);
         // 댓글이 있다면, 댓글도 삭제
-//        ArrayList<Comment> commentList = "";
-        return null;
+        List<CommentDtoM> commentDtoM = commentMapper.findByArticleId(id);
+        log.info("commentDtoM.size() : " + commentDtoM.size());
+        for(var i=0; i<commentDtoM.size(); i++){
+            commentMapper.delete2(id);
+        }
+        // 게시글 삭제
+        articleMapper.delete(id);
+        return articleDTO;
+
         
     }
 }

@@ -5,24 +5,23 @@ import com.example.secondProject.dto.myBatis.ArticleDTO;
 import com.example.secondProject.entity.Article;
 import com.example.secondProject.service.ArticleService;
 import com.example.secondProject.service.myBatis.ArticleServiceM;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequestMapping(value = "/api/mb/articles/")
 public class ArticleApiControllerM {
-    private static final Logger log = LoggerFactory.getLogger(ArticleApiControllerM.class);
     @Autowired
     private ArticleService articleService;
     @Autowired
     private ArticleServiceM articleServiceM;
 
     // 1. 게시글 전체 보기
-    @RequestMapping(value = "findAll", method = RequestMethod.POST)
+    @RequestMapping(value = "findAll", method = RequestMethod.GET)
     public ResponseEntity<?> index(){
         ArticleDTO articleDTO = new ArticleDTO();
         articleDTO.setResultCode("S0001");
@@ -64,7 +63,7 @@ public class ArticleApiControllerM {
     public ResponseEntity<?> delete(@PathVariable Long id){
         Article article = articleServiceM.show2(id);
         Long deleted = articleServiceM.delete(id);
-        log.info("deletedAAA : " + deleted);
+        log.info("deleted : " + deleted);
         return (deleted == 1) ?
                 ResponseEntity.ok(article) :
                 ResponseEntity.badRequest().build();
@@ -72,21 +71,12 @@ public class ArticleApiControllerM {
 //        ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
-    // 6. 게시글 삭제하기(2)
+    // 6. 게시글 삭제하기(댓글이 존재하는 경우)
     @DeleteMapping("delete2/{id}")
     public ResponseEntity<?> delete2(@PathVariable Long id){
-        Long deleted = articleServiceM.delete2(id);
-        log.info("deletedAAA : " + deleted);
-        return (deleted == 1) ?
-                ResponseEntity.ok().build() :
-//                ResponseEntity.ok(articleDTO) :
+        ArticleDTO articleDTO = articleServiceM.delete2(id);
+        return !(articleDTO.getRes()==null) ?
+                ResponseEntity.ok().body(articleDTO) :
                 ResponseEntity.badRequest().build();
-//        ResponseEntity.status(HttpStatus.NO_CONTENT).build() :
-//        ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
-
-//    ArticleDTO articleDTO = new ArticleDTO();
-//    articleDTO.setResultCode("S0001");
-//    articleDTO.setRes(articleServiceM.index());
-//    return new ResponseEntity<>(articleDTO, HttpStatus.OK);
 }

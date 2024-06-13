@@ -17,4 +17,7 @@ public interface CommentMapper {
     int update(CommentDtoM dto);
 
     int delete(Long id);
+
+    int delete2(Long articleId);
+
 }

@@ -18,6 +18,10 @@
         DELETE FROM comment WHERE id = #{id};
     ]]></delete>
 
+    <delete id="delete2"><![CDATA[
+        DELETE FROM comment WHERE article_id = #{articleId};
+    ]]></delete>
+
     <!--<select id="findAll" resultType="HashMap">
         select * from article
     </select>
