@@ -29,7 +29,7 @@ public class ArticleServiceM {
         return articleMapper.findAll();
     }
 
-    public ArrayList<HashMap<String, Object>> show(Long id) {
+    public ArticleForm show(Long id) {
         return articleMapper.findById(id);
     }
 
@@ -37,21 +37,23 @@ public class ArticleServiceM {
         return articleMapper.findById2(id);
     }
 
-    public int create(ArticleForm dto) {
-        Article article = dto.toEntity();
-        return articleMapper.save(article);
+    public int create(ArticleForm articleForm) {
+        return articleMapper.save(articleForm);
+    }
+
+    public int nextVal_articleId(){
+       return articleMapper.nextVal_articleId();
     }
 
 //    public Long update(Long id, ArticleForm dto) {
     public Long update(ArticleForm dto) {
-        Article article = dto.toEntity();
 //        Article target = articleMapper.findById2(id);
 //        if(target==null || !id.equals(article.getId())){
 //        if(target==null || id != article.getId()){
 //            log.info("잘못된 요청! id: {}, article: {}", id, article.toString());
 //            return 0;    // 응답은 컨트롤러가 하므로, 여기서는 null 반환
 //        }
-        return articleMapper.update(article);
+        return articleMapper.update(dto);
 //        target.patch(article);      //  --> 이건 일부분만 수정할 경우 엔티티를 셋팅하는 것 같음.
 //        Article updated = articleRepository.save(target);
 //        return updated;     // 응답은 컨트롤러가 하므로, 여기서는 수정데이터만 반환

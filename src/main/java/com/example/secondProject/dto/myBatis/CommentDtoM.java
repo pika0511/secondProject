@@ -14,14 +14,16 @@ public class CommentDtoM {
 //    private Long articleId;
     private String nickname;
     private String body;
+    private String article_id;
 
-    public static CommentDtoM createCommentDto(CommentDtoM comment) {
-        return new CommentDtoM(
-                comment.getId(),
-//                comment.getArticle().getId(),
-                comment.getNickname(),
-                comment.getBody()
-        );
-    }
+//    public static CommentDtoM createCommentDto(Comment comment) {
+//        return new CommentDtoM(
+//                comment.getId(),
+////                comment.getArticle().getId(),
+//                comment.getNickname(),
+//                comment.getBody()
+//        );
+//    }
+
 
 }

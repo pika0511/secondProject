@@ -4,6 +4,8 @@ import com.example.secondProject.entity.Article;
 import com.example.secondProject.entity.Comment;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
@@ -14,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJpaTest
 class CommentRepositoryTest {
+    private static final Logger log = LoggerFactory.getLogger(CommentRepositoryTest.class);
     @Autowired
     CommentRepository commentRepository;
 
@@ -26,6 +29,7 @@ class CommentRepositoryTest {
             Long articleId = 4L;
             // 2. 실제 데이터
             List<Comment> comments = commentRepository.findByArticleId(articleId);
+            log.info("comments.toString() : " + comments.toString());
             // 3. 예상 데이터
             Article article = new Article(4L, "What is your favorite movie?", "댓글 고");   // 부모 게시글 객체 생성
             Comment a = new Comment(1L, article, "Park", "굿 윌 헌팅");

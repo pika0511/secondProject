@@ -3,6 +3,7 @@ package com.example.secondProject.service;
 import com.example.secondProject.dto.CommentDto;
 import com.example.secondProject.entity.Article;
 import com.example.secondProject.entity.Comment;
+import com.example.secondProject.mapper.CommentMapper;
 import com.example.secondProject.repository.ArticleRepository;
 import com.example.secondProject.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +19,10 @@ public class CommentService {
     private CommentRepository commentRepository;
     @Autowired
     private ArticleRepository articleRepository;
+    @Autowired
+    private CommentMapper commentMapper;
 
     public List<CommentDto> comments(Long articleId) {
-//        List<Comment> comments = commentRepository.findByArticleId(articleId);
-//        List<CommentDto> dtos = new ArrayList<CommentDto>();
-//        for(int i=0; i<comments.size(); i++){
-//            Comment comment = comments.get(i);
-//            CommentDto dto = CommentDto.createCommentDto(comment);
-//            dtos.add(dto);
-//        }
-//        return dtos;
         return commentRepository.findByArticleId(articleId)
                 .stream()
                 .map(comment -> CommentDto.createCommentDto(comment))

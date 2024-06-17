@@ -1,5 +1,6 @@
 package com.example.secondProject.mapper;
 
+import com.example.secondProject.dto.ArticleForm;
 import com.example.secondProject.entity.Article;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -13,13 +14,15 @@ public interface ArticleMapper {
 
     ArrayList<HashMap<String, Object>> findAll();
 
-    ArrayList<HashMap<String, Object>> findById(Long id);
+    ArticleForm findById(Long id);
 
     Article findById2(Long id);
 
-    int save(Article article);
+    int save(ArticleForm articleForm);
 
-    Long update(Article article);
+    Long update(ArticleForm article);
 
     Long delete(Long id);
+
+    int nextVal_articleId();
 }

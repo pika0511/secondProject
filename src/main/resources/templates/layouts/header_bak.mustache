@@ -57,3 +57,84 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 {{/msg}}
+
+
+<script type="text/javascript">
+/*
+    function hrefTest(){
+        //window.location.href="https://solution.ktaxnara.com";
+        window.location.href="https://114.203.110.97:19036/";
+    }
+    $.support.cors = true;
+*/
+    function loadDoc(sUrl) {
+        alert(sUrl);
+        var pd = $("textarea#tx_input").val();
+        $("textarea#tx_output").val("---------- send ----------");
+        $.ajax({
+            type: "POST",
+            url: sUrl,
+            data: pd,
+            dataType: "json",
+            contentType: 'application/json; charset=UTF-8',
+            crossDomain: true,
+            crossOrigin: true,
+            success: function(data) {
+                // console.log(data);
+                print_receive(data);
+            },
+            error: function(xhr, status, error) {
+                $("textarea#tx_output").val("---------- result ----------\n");
+                $("textarea#tx_output").val(status)
+                if (sUrl.indexOf("op=setup") != -1) {
+                    fnNxDownload("../ExAdapter_Web_Setup_20221130.exe");
+                    if (browserName == "Mozilla Firefox") {
+                        alert("설치가 완료된 후에 브라우저를 닫고, 다시 시작하여 이용하시기 바랍니다.(Firefox browser)");
+                    }
+                }
+            }
+        });
+    }
+
+/*
+    $(function () {
+        $("input[id=signPw]").keydown(function(key){
+            if(key.keyCode == 13){ // 레이어 창에서 Enter 키 입력시
+                selectedCert.signPw = $('#signPw').val();
+                if (selectedCert.signCert === undefined ||selectedCert.signCert === null){
+                    alert("인증서를 선택해주세요");
+                    return false;
+                } else if(selectedCert.signPw === undefined || selectedCert.signPw === null || selectedCert.signPw === ''){
+                    alert("인증서 비밀번호를 입력해주세요")
+                    return false;
+                } else {
+                    getCertResult();
+                    $("#tbody").empty();
+                    $('#signPw').val('');
+                    $('.dim-layer').fadeOut("fast"); // 닫기 버튼을 클릭하면 레이어가 닫힌다.
+                    return false;
+                }
+            }
+        });
+
+        $('button#certConfirm').click(function(){
+            selectedCert.signPw = $('#signPw').val();
+            if (selectedCert.signCert === undefined ||selectedCert.signCert === null){
+                alert("인증서를 선택해주세요");
+                return false;
+            } else if(selectedCert.signPw === undefined || selectedCert.signPw === null || selectedCert.signPw === ''){
+                alert("인증서 비밀번호를 입력해주세요")
+                return false;
+            } else {
+                getCertResult();
+                $("#tbody").empty();
+                $('#signPw').val('');
+                $('.dim-layer').fadeOut("fast"); // 닫기 버튼을 클릭하면 레이어가 닫힌다.
+                var emptyObj = new Object();
+                selectedCert = emptyObj;
+                return false;
+            }
+        });
+    })
+*/
+</script>

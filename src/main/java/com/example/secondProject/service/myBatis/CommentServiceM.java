@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class CommentServiceM {
@@ -31,10 +30,10 @@ public class CommentServiceM {
 //            dtos.add(dto);
 //        }
 //        return dtos;
-        return commentMapper.findByArticleId(articleId)
-                .stream()
-                .map(comment -> CommentDtoM.createCommentDto(comment))
-                .collect(Collectors.toList());
+        return commentMapper.findByArticleId(articleId);
+//                .stream()
+//                .map(comment -> CommentDtoM.createCommentDto(comment))
+//                .collect(Collectors.toList());
     }
 
     @Transactional

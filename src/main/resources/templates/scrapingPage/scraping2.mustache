@@ -18,7 +18,7 @@
     <!--link rel="stylesheet" href="css/ex.gate.css?181" /-->
     <link href="/nxService/css/viewer_220121.css" rel="stylesheet">
 
-<!--    <link rel="stylesheet" href="/nxService/css/layerPopup_220124.css" />-->
+    <link rel="stylesheet" href="/nxService/css/layerPopup_220124.css" />
 </head>
 <body>
     <script type="text/javascript" src="/nxService/com/json2.min.js"></script>
@@ -27,6 +27,92 @@
     <script type="text/javascript" src="/nxService/js/nx2.js"></script>
     <script type="text/javascript" src="/nxService/js/block-ui.js"></script>
     <script src="/nxService/js/jquery.blockUI.js"></script>
+    <script type="text/javascript">
+        function hrefTest(){
+            //window.location.href="https://solution.ktaxnara.com";
+            window.location.href="https://114.203.110.97:19036/";
+        }
+        /*
+        $.support.cors = true;
+        function loadDoc(sUrl) {
+            var pd = $("textarea#tx_input").val();
+            $("textarea#tx_output").val("---------- send ----------");
+            $.ajax({
+                type: "POST",
+                url: sUrl,
+                data: pd,
+                dataType: "json",
+                contentType: 'application/json; charset=UTF-8',
+                crossDomain: true,
+                crossOrigin: true,
+                success: function(data) {
+                    // console.log(data);
+                    print_receive(data);
+                },
+                error: function(xhr, status, error) {
+                    $("textarea#tx_output").val("---------- result ----------\n");
+                    $("textarea#tx_output").val(status)
+                    if (sUrl.indexOf("op=setup") != -1) {
+                        fnNxDownload("../ExAdapter_Web_Setup_20221130.exe");
+                        if (browserName == "Mozilla Firefox") {
+                            alert("설치가 완료된 후에 브라우저를 닫고, 다시 시작하여 이용하시기 바랍니다.(Firefox browser)");
+                        }
+                    }
+                }
+            });
+        }*/
+
+        $(function () {
+            $("input[id=signPw]").keydown(function(key){
+                if(key.keyCode == 13){ // 레이어 창에서 Enter 키 입력시
+                    selectedCert.signPw = $('#signPw').val();
+                    if (selectedCert.signCert === undefined ||selectedCert.signCert === null){
+                        alert("인증서를 선택해주세요");
+                        return false;
+                    } else if(selectedCert.signPw === undefined || selectedCert.signPw === null || selectedCert.signPw === ''){
+                        alert("인증서 비밀번호를 입력해주세요")
+                        return false;
+                    } else {
+                        getCertResult();
+                        $("#tbody").empty();
+                        $('#signPw').val('');
+                        $('.dim-layer').fadeOut("fast"); // 닫기 버튼을 클릭하면 레이어가 닫힌다.
+                        return false;
+                    }
+                }
+            });
+
+            $('button#certConfirm').click(function(){
+                console.log('click!!');
+                // menu='certListWeb';
+                menu = 'changeCert';
+                selectedCert.signPw = $('#signPw').val();
+                if (selectedCert.signCert === undefined ||selectedCert.signCert === null){
+                    alert("인증서를 선택해주세요");
+                    return false;
+                } else if(selectedCert.signPw === undefined || selectedCert.signPw === null || selectedCert.signPw === ''){
+                    alert("인증서 비밀번호를 입력해주세요")
+                    return false;
+                } else {
+                    getCertResult();
+                    $("#tbody").empty();
+                    $('#signPw').val('');
+                    $('.dim-layer').fadeOut("fast"); // 닫기 버튼을 클릭하면 레이어가 닫힌다.
+                    var emptyObj = new Object();
+                    selectedCert = emptyObj;
+                    return false;
+                }
+            });
+        })
+
+        function changeCert(data){
+            var inputValue = document.querySelector('#inputText').value;
+            var inJson = JSON.parse(inputValue);
+            inJson.signCert = data.DER2PEM.replaceAll('\n', '');
+            inJson.signPri = data.KEY2PEM.replaceAll('\n', '');
+            document.querySelector('#inputText').value = JSON.stringify(inJson, null, 4);
+        }
+    </script>
     {{>layouts/header}}
     <div class="p-2 bd-highlight" style="width:30%">
         <select class="form-select form-select-lg mb-3 main-list" aria-label=".form-select-lg example" name="main-list">
@@ -74,6 +160,73 @@
             </h5>
         </div>
     </div>
+    <!-- 레이어 팝업-->
+    <div class="dim-layer">
+        <div class="dimBg"></div>
+        <div id="layer2" class="pop-layer">
+            <div class="pop-container">
+                <div class="pop_head">
+                    <div><p id="title_cert_list">공동인증 전자서명</p></div>
+                    <div class="btnX_wrap">
+                        <button class="btnX" onclick="certCancel();">
+                        <span class="icon">
+                            <svg viewBox="0 0 24 24" height="12" width="12" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z">
+                            </path>
+                        </svg>
+                        </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="pop_cont">
+                    <div class="logo_grap"><img src="/nxService/img/logo_grap.png"></div>
+                    <div>
+                        <p class="pop_title">인증서 선택</p>
+                    </div>
+                    <div>
+                        <div class="table_wrap">
+                            <table class="pop_table">
+                                <thead>
+                                <tr class="cert_title">
+                                    <th class="th1">구분</th>
+                                    <th class="th2">인증서명</th>
+                                    <th class="th3">만료일</th>
+                                    <th class="th4">발급자</th>
+                                    <th class="th5">위치</th>
+                                </tr>
+                                </thead>
+                                <tbody id="pop_table_tbody">
+                                <tr class="cert_cont">
+                                    <td class="td1"></td>
+                                    <td class="td2"></td>
+                                    <td class="td3"></td>
+                                    <td class="td4"></td>
+                                    <td class="td5"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <div>
+                        <div><p class="pop_title">인증서 암호입력</p></div>
+                        <div class="pw_wrap">
+                            <input type="password" id="signPw" />
+                            <p>안전한 개인정보 관리를 위해 6개월마다 비밀번호를 변경하기 바랍니다.</p>
+                        </div>
+                    </div>
+
+                    <div class="pop-conts">
+                        <div class="pop-conts_wrap">
+                            <button class="btn btn-default btn-layerClose" id="certCancel" onclick="certCancel();">취소</button>
+                            <button class="btn btn-success btn-layerConfirm" id="certConfirm">확인</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     {{>layouts/footer}}
 </body>
 </html>
@@ -99,10 +252,12 @@
 <!--Ajax로 inJson값 호출-->
 <script>
     var subList = document.querySelector('.sub-list');
+    menu = 'changeCert';    // 선택한 인증서로 교체
     subList.onchange = function () {
         var id = document.querySelector("select[name=sub-list] option:checked").id;
         // 입력값 Ajax호출
         loadDoc('/scraping/'+id);
+        popup();
     }
 
     function loadDoc(sUrl) {
@@ -136,91 +291,3 @@
             });
         }
 </script>
-
-<!--
-<script type="text/javascript">
-    var mainCity = document.querySelector('.main-list');
-
-    mainCity.onchange = function () {
-        var subCity = document.querySelector('.sub-list');
-        var mainOption = mainCity.options[mainCity.selectedIndex].innerText;
-        // var mainOption =  mainCity.options[mainCity.selectedIndex].value;로 해도 동일합니다.
-
-        var subOptions = {
-            hometax: ['휴폐업조회'],
-            gov: ['지방세납세증명'],
-            carspec: ['차량스펙조회_현대', '차량스펙조회_기아', '차량스펙조회_쌍용']
-        }
-
-        var subValues = {
-            hometax: ['HT001'],
-            gov: ['GV001'],
-            carspec: ['CR001', 'CR002', 'CR003']
-        }
-
-        switch (mainOption) {
-            case '홈택스':
-                var subOption = subOptions.hometax;
-                var subValue = subValues.hometax;
-                break;
-            case '정부24':
-                var subOption = subOptions.gov;
-                var subValue = subValues.gov;
-                break;
-            case '카스펙':
-                var subOption = subOptions.carspec;
-                var subValue = subValues.carspec;
-                break;
-        }
-
-        subCity.options.length = 1;
-
-        for (var i = 0; i < subOption.length; i++) {
-            var option = document.createElement('option');
-            option.innerText = subOption[i];
-            option.value = subValue[i]; // 이것도 가능합니다.
-            subCity.append(option);
-        }
-
-&lt;!&ndash;        alert(document.querySelector("select[name=sub-list] option:checked").text);&ndash;&gt;
-&lt;!&ndash;        alert(document.querySelector("select[name=sub-list] option:checked").value);&ndash;&gt;
-    }
-
-    var subCity = document.querySelector('.sub-list');
-
-    subCity.onchange = function () {
-        var val = document.querySelector("select[name=sub-list] option:checked").value;
-        // 입력값 Ajax호출
-        loadDoc('/scraping/'+val);
-    }
-    function loadDoc(sUrl) {
-            console.log('----Call Ajax----')
-&lt;!&ndash;            var pd = $("textarea#tx_input").val();&ndash;&gt;
-            var pd = '';
-&lt;!&ndash;            $("textarea#tx_output").val("---------- send ----------");&ndash;&gt;
-            $.ajax({
-                type: "GET",
-                url: sUrl,
-                data: pd,
-                dataType: "json",
-                contentType: 'application/json; charset=UTF-8',
-                crossDomain: true,
-                crossOrigin: true,
-                success: function(data) {
-                    // console.log(data);
-&lt;!&ndash;					print_receive(data);&ndash;&gt;
-                    document.querySelector(".inputValue").value = JSON.stringify(data, null, 4);
-                },
-                error: function(xhr, status, error) {
-                    $("textarea#tx_output").val("---------- result ----------\n");
-                    $("textarea#tx_output").val(status)
-					if (sUrl.indexOf("op=setup") != -1) {
-						fnNxDownload("../ExAdapter_Web_Setup_20221130.exe");
-                        if (browserName == "Mozilla Firefox") {
-                            alert("설치가 완료된 후에 브라우저를 닫고, 다시 시작하여 이용하시기 바랍니다.(Firefox browser)");
-                        }
-					}
-                }
-            });
-        }
-</script>-->

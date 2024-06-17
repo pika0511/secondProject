@@ -559,6 +559,8 @@ function getCertResult(){
                 } else {
                     alert(data.errMsg||'시스템 오류 입니다.');
                 }
+            } else if(menu == 'changeCert'){
+                changeCert(data);
             }
         },
         error: function(xhr, status, error) {

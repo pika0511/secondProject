@@ -14,8 +14,12 @@
         select * from article where id = #{id}
     ]]></select>
 
+    <select id="nextVal_articleId"><![CDATA[
+        SELECT MAX(id)+1 FROM article;
+    ]]></select>
+
     <insert id="save"><![CDATA[
-        INSERT INTO article(id, title, content) VALUES(#{id}, #{title}, #{content});
+        INSERT INTO article(title, content) VALUES(#{title}, #{content});
     ]]></insert>
 
     <update id="update"><![CDATA[
