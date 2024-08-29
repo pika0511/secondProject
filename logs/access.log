@@ -12555,3 +12555,93 @@ java.lang.Exception: exception just for purpose of providing stack trace
 10:23 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
 10:23 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
 10:23 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:24 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:24 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:24 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:24 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:25 DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@1dadffe4: (connection has passed maxLifetime)
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - Database change: is 'infotech_qna'
+10:25 DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SET NAMES utf8mb4
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - System variable change:  character_set_client = utf8mb4
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - System variable change:  character_set_connection = utf8mb4
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - System variable change:  character_set_results = utf8mb4
+10:25 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.mariadb.jdbc.Connection@232bcea
+10:25 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Connection not added, stats (total=10, active=0, idle=10, waiting=0)
+10:25 DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@60f879e: (connection has passed maxLifetime)
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - Database change: is 'infotech_qna'
+10:25 DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SET NAMES utf8mb4
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - System variable change:  character_set_client = utf8mb4
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - System variable change:  character_set_connection = utf8mb4
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - System variable change:  character_set_results = utf8mb4
+10:25 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.mariadb.jdbc.Connection@572aeb9f
+10:25 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Connection not added, stats (total=10, active=0, idle=10, waiting=0)
+10:25 DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@7bc407f1: (connection has passed maxLifetime)
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - Database change: is 'infotech_qna'
+10:25 DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SET NAMES utf8mb4
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - System variable change:  character_set_client = utf8mb4
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - System variable change:  character_set_connection = utf8mb4
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - System variable change:  character_set_results = utf8mb4
+10:25 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.mariadb.jdbc.Connection@7d4c585e
+10:25 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Connection not added, stats (total=10, active=0, idle=10, waiting=0)
+10:25 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:25 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:25 DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@440060f2: (connection has passed maxLifetime)
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - Database change: is 'infotech_qna'
+10:25 DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SET NAMES utf8mb4
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - System variable change:  character_set_client = utf8mb4
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - System variable change:  character_set_connection = utf8mb4
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - System variable change:  character_set_results = utf8mb4
+10:25 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.mariadb.jdbc.Connection@43992d28
+10:25 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Connection not added, stats (total=10, active=0, idle=10, waiting=0)
+10:25 DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@6a1bfe09: (connection has passed maxLifetime)
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - Database change: is 'infotech_qna'
+10:25 DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SET NAMES utf8mb4
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - System variable change:  character_set_client = utf8mb4
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - System variable change:  character_set_connection = utf8mb4
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - System variable change:  character_set_results = utf8mb4
+10:25 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.mariadb.jdbc.Connection@706082db
+10:25 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Connection not added, stats (total=10, active=0, idle=10, waiting=0)
+10:25 DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@4ba13fed: (connection has passed maxLifetime)
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - Database change: is 'infotech_qna'
+10:25 DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SET NAMES utf8mb4
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - System variable change:  character_set_client = utf8mb4
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - System variable change:  character_set_connection = utf8mb4
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - System variable change:  character_set_results = utf8mb4
+10:25 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.mariadb.jdbc.Connection@68b621ae
+10:25 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Connection not added, stats (total=10, active=0, idle=10, waiting=0)
+10:25 DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@3c8e7cc4: (connection has passed maxLifetime)
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - Database change: is 'infotech_qna'
+10:25 DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SET NAMES utf8mb4
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - System variable change:  character_set_client = utf8mb4
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - System variable change:  character_set_connection = utf8mb4
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - System variable change:  character_set_results = utf8mb4
+10:25 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.mariadb.jdbc.Connection@c6b7e8f
+10:25 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Connection not added, stats (total=10, active=0, idle=10, waiting=0)
+10:25 DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@2e254fc6: (connection has passed maxLifetime)
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - Database change: is 'infotech_qna'
+10:25 DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SET NAMES utf8mb4
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - System variable change:  character_set_client = utf8mb4
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - System variable change:  character_set_connection = utf8mb4
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - System variable change:  character_set_results = utf8mb4
+10:25 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.mariadb.jdbc.Connection@33c94b8b
+10:25 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Connection not added, stats (total=10, active=0, idle=10, waiting=0)
+10:25 DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@6d16fb3e: (connection has passed maxLifetime)
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - Database change: is 'infotech_qna'
+10:25 DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SET NAMES utf8mb4
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - System variable change:  character_set_client = utf8mb4
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - System variable change:  character_set_connection = utf8mb4
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - System variable change:  character_set_results = utf8mb4
+10:25 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.mariadb.jdbc.Connection@66604efc
+10:25 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Connection not added, stats (total=10, active=0, idle=10, waiting=0)
+10:25 DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@458029d2: (connection has passed maxLifetime)
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - Database change: is 'infotech_qna'
+10:25 DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SET NAMES utf8mb4
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - System variable change:  character_set_client = utf8mb4
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - System variable change:  character_set_connection = utf8mb4
+10:25 DEBUG o.m.jdbc.message.server.OkPacket - System variable change:  character_set_results = utf8mb4
+10:25 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.mariadb.jdbc.Connection@4346c3ee
+10:25 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Connection not added, stats (total=10, active=0, idle=10, waiting=0)
+10:25 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:25 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:26 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:26 DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
