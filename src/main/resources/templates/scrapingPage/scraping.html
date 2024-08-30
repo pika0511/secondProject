@@ -27,7 +27,7 @@
     <script type="text/javascript" src="/nxService/js/nx2.js"></script>
     <script type="text/javascript" src="/nxService/js/block-ui.js"></script>
     <script src="/nxService/js/jquery.blockUI.js"></script>
-    {{>layouts/header}}
+    <div th:replace="fragment/header :: commonHeader"></div>
     <div class="p-2 bd-highlight" style="width:30%">
         <select class="form-select form-select-lg mb-3 main-list" aria-label=".form-select-lg example" name="main-list">
             <option selected>기관을 선택해 주세요.</option>
@@ -68,7 +68,7 @@
             </h5>
         </div>
     </div>
-    {{>layouts/footer}}
+    <div th:replace="fragment/footer :: commonFooter"></div>
 </body>
 </html>
 

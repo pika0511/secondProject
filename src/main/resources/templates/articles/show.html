@@ -11,7 +11,7 @@
     <title>show</title>
 </head>
 <body>
-    {{>layouts/header}}
+    <div th:replace="fragment/header :: commonHeader"></div>
     <table class="table">
         <thead>
         <tr>
@@ -21,19 +21,18 @@
         </tr>
         </thead>
         <tbody>
-        {{#article}}
-        <tr>
-            <th scope="row">{{id}}</th>
-            <td>{{title}}</td>
-            <td>{{content}}</td>
+        <tr th:each="d : ${article}">
+            <th scope="row" th:text="${d.id}"></th>
+            <td th:tex="${d.title}"></td>
+            <td th:text="${d.content}"></td>
         </tr>
-        {{/article}}
         </tbody>
     </table>
-    <a href="/articles/{{article.id}}/edit" class="btn btn-primary">Edit</a>
-    <a href="/articles/{{article.id}}/delete" class="btn btn-danger">Delete</a>
+    <a th:href="'/articles/'+${article.id}+'/edit'" class="btn btn-primary">Edit</a>
+    <a th:href="'/articles/'+${article.id}+'/delete'" class="btn btn-danger">Delete</a>
     <a href="/articles" class="btn btn-primary">Go to Article List</a>
-    {{>comments/_comments}}  <!-- 상세 페이지에 댓글 뷰 파일 삽입 -->
-    {{>layouts/footer}}
+    <!--{{>comments/_comments}}-->  <!-- 상세 페이지에 댓글 뷰 파일 삽입 -->
+    <div th:replace="comments/_comments :: _comments"></div>
+    <div th:replace="fragment/footer :: commonFooter"></div>
 </body>
 </html>

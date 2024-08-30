@@ -11,7 +11,7 @@
     <title>show</title>
 </head>
 <body>
-    {{>layouts/header}}
+    <div th:replace="fragment/header :: commonHeader"></div>
     <table class="table">
         <thead>
         <tr>
@@ -21,16 +21,14 @@
         </tr>
         </thead>
         <tbody>
-        {{#articleEntityList}}
-        <tr>
-            <th>{{id}}</th>
-            <td><a href="/articles/{{id}}">{{title}}</a></td>
-            <td>{{content}}</td>
-        </tr>
-        {{/articleEntityList}}
+            <tr th:each="d : ${articleEntityList}">
+                <th th:text="${d.id}"></th>
+                <td><a th:href="'/articles/'+${d.id}" th:text="${d.title}"></a></td>
+                <td th:text="${d.content}"></td>
+            </tr>
         </tbody>
     </table>
     <a href="/articles/new">New Articles</a>
-    {{>layouts/footer}}
+    <div th:replace="fragment/footer :: commonFooter"></div>
 </body>
 </html>

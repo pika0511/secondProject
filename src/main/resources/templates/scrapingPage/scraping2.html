@@ -113,22 +113,22 @@
             document.querySelector('#inputText').value = JSON.stringify(inJson, null, 4);
         }
     </script>
-    {{>layouts/header}}
+    <div th:replace="fragment/header :: commonHeader"></div>
     <div class="p-2 bd-highlight" style="width:30%">
         <select class="form-select form-select-lg mb-3 main-list" aria-label=".form-select-lg example" name="main-list">
             <option selected>기관을 선택해 주세요.</option>
-            {{#selectMainMenu}}
-                <option value="{{orgCd}}">{{orgNm}}</option>
-            {{/selectMainMenu}}
+            <th:block th:each="m : ${selectMainMenu}">
+                <option th:value="${m.orgCd}" th:text="${m.orgNm}"></option>
+            </th:block>
             <!--<option value="1">홈택스</option>
             <option value="2">정부24</option>
             <option value="3">카스펙</option>-->
         </select>
         <select class="form-select form-select-sm sub-list" aria-label=".form-select-sm example" name="sub-list">
             <option selected>서비스를 선택해 주세요.</option>
-            {{#selectSubMenu}}
-                <option id={{svcId}} value="{{orgCd}}">{{bigo}}</option>
-            {{/selectSubMenu}}
+            <th:block th:each="s : ${selectSubMenu}">
+                <option th:id="${s.svcId}" th:value="${s.orgCd}" th:text="${s.bigo}"></option>
+            </th:block>
             <!--<option value="1">One</option>
             <option value="2">Two</option>
             <option value="3">Three</option>-->
@@ -227,7 +227,7 @@
             </div>
         </div>
     </div>
-    {{>layouts/footer}}
+    <div th:replace="fragment/footer :: commonFooter"></div>
 </body>
 </html>
 
